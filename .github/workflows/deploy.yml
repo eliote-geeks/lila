@@ -8,11 +8,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    env:
-      APP_ENV: production
-      APP_DEBUG: false
-      NODE_ENV: production
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,9 +19,13 @@ jobs:
           cache: npm
 
       - name: Install frontend deps
+        env:
+          NODE_ENV: development
         run: npm ci
 
       - name: Build frontend
+        env:
+          NODE_ENV: development
         run: npx vite build
 
       - name: Setup PHP
