@@ -31,7 +31,9 @@
         </nav>
 
         <header class="max-w-7xl mx-auto px-6 pb-10 pt-4">
-            <div class="grid lg:grid-cols-[1.05fr,0.95fr] gap-12 items-center">
+            <div class="grid lg:grid-cols-[1.05fr,0.95fr] gap-12 items-center relative">
+                <div class="absolute -left-10 top-10 w-36 h-36 rounded-full bg-sky-400/15 glow-animate"></div>
+                <div class="absolute -right-14 top-24 w-32 h-32 rounded-full bg-fuchsia-400/15 glow-animate" style="animation-delay:1.2s"></div>
                 <div>
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full pill text-xs text-sky-100 border border-slate-700">
                         <span class="w-2 h-2 rounded-full bg-sky-300 pulse"></span>
@@ -62,17 +64,17 @@
                         </div>
                     </div>
                     <div class="mt-8 grid sm:grid-cols-3 gap-4">
-                        <div class="glass rounded-2xl p-4">
+                        <div class="glass rounded-2xl p-4 float-soft">
                             <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Offres ciblées</p>
                             <p class="text-2xl font-semibold text-white">+72%</p>
                             <p class="text-sm text-slate-300">taux moyen de correspondance</p>
                         </div>
-                        <div class="glass rounded-2xl p-4">
+                        <div class="glass rounded-2xl p-4 float-soft delay">
                             <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Candidatures</p>
                             <p class="text-2xl font-semibold text-white">10k+</p>
                             <p class="text-sm text-slate-300">envoyées automatiquement</p>
                         </div>
-                        <div class="glass rounded-2xl p-4">
+                        <div class="glass rounded-2xl p-4 float-soft">
                             <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Alertes</p>
                             <p class="text-2xl font-semibold text-white">1.2s</p>
                             <p class="text-sm text-slate-300">réponse moyenne</p>
@@ -82,7 +84,7 @@
 
                 <div class="relative">
                     <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-sky-300/10 blur-3xl"></div>
-                    <div class="glass rounded-3xl p-6 shadow-glow border border-slate-800">
+                    <div class="glass rounded-3xl p-6 shadow-glow border border-slate-800 shimmer float-soft">
                         <div class="flex items-center justify-between mb-4">
                             <div>
                                 <p class="text-slate-300 text-sm">Lila · IA CamerHub</p>
