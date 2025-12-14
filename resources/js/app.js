@@ -1,5 +1,11 @@
 import './bootstrap';
 
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+Alpine.start();
+
+// Chat demo logic (web & WhatsApp unified)
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
@@ -8,7 +14,7 @@ const state = {
         {
             id: crypto.randomUUID(),
             sender: 'ai',
-            text: 'Salut, je suis Lila, l’agent IA CamerHub. Pose-moi une question ou décris ton profil, je te trouve les offres qui matchent.',
+            text: 'Salut, je suis Lila, l’agent CamerHub. Dis-moi ce que tu cherches (métier, ville, niveau) et je te propose des offres.',
             timestamp: new Date(),
         },
     ],
@@ -52,16 +58,15 @@ function setTyping(isTyping) {
 function simulateAiReply(userText) {
     setTyping(true);
     const thoughts = [
-        "Je priorise les offres >70% de match et je te prépare un CV optimisé.",
-        "Je peux aussi te proposer une lettre de motivation adaptée à l’entreprise.",
-        "Veux-tu activer les alertes temps réel WhatsApp pour les nouvelles offres ?",
-        "Je peux analyser ton CV en 30 secondes et améliorer ton match.",
+        "Je te propose 3 offres qui collent à ton profil.",
+        "Je peux aussi préparer un CV et une lettre pour cette offre.",
+        "Veux-tu recevoir une alerte WhatsApp dès qu’une offre matche ?",
+        "Donne-moi ta ville et ton niveau d’expérience pour cibler mieux.",
     ];
     const answer =
         thoughts[Math.floor(Math.random() * thoughts.length)] +
-        `\n\nRésumé: tu cherches "${userText.slice(0, 80)}" ? Donne-moi plus de détails (ville, secteur, niveau).`;
+        `\n\nTu cherches: "${userText.slice(0, 80)}". Ajoute des détails (ville, secteur, salaire).`;
 
-    // Simuler un flux de texte en quasi temps réel
     const chunks = answer.split(' ');
     let current = '';
     const id = crypto.randomUUID();
@@ -99,7 +104,7 @@ function handleSubmit(e) {
     });
     renderMessages();
 
-    // À remplacer par un appel API temps réel (SSE/WebSocket) vers Laravel/n8n
+    // À remplacer par un appel API réel (SSE/WebSocket) vers Laravel/n8n
     simulateAiReply(text);
 }
 
@@ -108,7 +113,6 @@ function init() {
     form.addEventListener('submit', handleSubmit);
     renderMessages();
 
-    // Boutons presets pour tester rapidement
     $$('[data-prompt]').forEach((btn) =>
         btn.addEventListener('click', () => {
             input.value = btn.dataset.prompt || '';
