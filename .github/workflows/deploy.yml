@@ -54,4 +54,4 @@ jobs:
             storage/framework/sessions/**
             storage/framework/cache/**
             .env
-          local-dir: .
+          local-dir: ./
