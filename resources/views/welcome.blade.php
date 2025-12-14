@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CamerHub · Assistant Emploi IA</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%237dd3fc'/%3E%3Cstop offset='1' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='12' fill='%230b0e14'/%3E%3Cpath d='M16 44V20h8c7 0 12 4.5 12 12s-5 12-12 12Zm8-6c3.4 0 6-2.6 6-6s-2.6-6-6-6h-2v12Zm18.5 6-7-12.1 6.5-11.9h6.9l-6.5 11.9 7 12.1Z' fill='url(%23g)'/%3E%3C/svg%3E">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased">
@@ -83,6 +84,9 @@
                             </div>
                             <span class="px-3 py-1 text-xs rounded-full pill text-sky-100 border border-slate-700">En ligne</span>
                         </div>
+                        <div class="overflow-hidden rounded-2xl mb-4 border border-slate-800">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Candidats CamerHub" class="w-full h-44 object-cover">
+                        </div>
                         <div class="space-y-3 text-sm text-slate-200">
                             <div class="chat-bubble-ai rounded-2xl px-4 py-3">
                                 Salut ! Partage ton profil ou l’offre qui t’intéresse, je calcule le match et je prépare ton CV.
@@ -130,6 +134,36 @@
                     <p class="text-sm uppercase tracking-[0.2em] text-slate-400 mb-2">Multicanal</p>
                     <h3 class="text-xl text-white font-semibold mb-2">Web & WhatsApp synchronisés</h3>
                     <p class="text-slate-300 text-sm leading-relaxed">Conversations centralisées, messages journalisés en base pour suivi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 pb-16">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Histoires vraies</p>
+                    <h2 class="text-3xl font-semibold text-white mt-2 font-[var(--font-display)]">Ils ont trouvé via CamerHub</h2>
+                    <p class="text-slate-300 mt-2">Des profils réels, des offres ciblées, des candidatures envoyées en 1 clic.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="glass rounded-3xl p-4 border border-slate-800">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Sara, Product Manager" class="w-full h-40 object-cover rounded-2xl mb-3 border border-slate-800">
+                    <p class="text-white font-semibold">Sara · Product Manager</p>
+                    <p class="text-slate-400 text-sm">Douala · Match 82%</p>
+                    <p class="text-slate-300 text-sm mt-2">“Lila m’a envoyé 3 offres pertinentes en 24h. CV + lettre prêts, entretien obtenu en 4 jours.”</p>
+                </div>
+                <div class="glass rounded-3xl p-4 border border-slate-800">
+                    <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=80" alt="Emmanuel, Dev Backend" class="w-full h-40 object-cover rounded-2xl mb-3 border border-slate-800">
+                    <p class="text-white font-semibold">Emmanuel · Dev Backend</p>
+                    <p class="text-slate-400 text-sm">Yaoundé · Match 76%</p>
+                    <p class="text-slate-300 text-sm mt-2">“Analyse IA des offres, CV ATS-friendly généré, candidature envoyée automatiquement.”</p>
+                </div>
+                <div class="glass rounded-3xl p-4 border border-slate-800">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" alt="Aïcha, Data Analyst" class="w-full h-40 object-cover rounded-2xl mb-3 border border-slate-800">
+                    <p class="text-white font-semibold">Aïcha · Data Analyst</p>
+                    <p class="text-slate-400 text-sm">Bafoussam · Match 74%</p>
+                    <p class="text-slate-300 text-sm mt-2">“Alertes WhatsApp + messagerie web synchronisée. J’ai signé après 2 entretiens.”</p>
                 </div>
             </div>
         </section>
