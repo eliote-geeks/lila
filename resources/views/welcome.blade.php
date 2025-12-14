@@ -47,13 +47,14 @@
                         <a href="{{ url('/chat') }}" class="px-5 py-3 rounded-full gradient-border relative overflow-hidden text-white font-semibold shadow-glow">
                             <span class="relative z-10">Démarrer sur le web</span>
                         </a>
-                        <a href="https://wa.me/" target="_blank" class="px-5 py-3 rounded-full pill text-slate-200 border border-slate-700 hover:border-slate-500 transition">
-                            Continuer sur WhatsApp
+                        <a href="https://wa.me/237672251531" target="_blank" class="px-5 py-3 rounded-full pill text-slate-200 border border-slate-700 hover:border-slate-500 transition">
+                            Démarrer sur WhatsApp
                         </a>
                         <div class="flex items-center gap-3 text-slate-300 text-sm">
                             <div class="w-8 h-8 rounded-full glass flex items-center justify-center text-xs">24/7</div>
                             <span>Réponses rapides · en français et anglais</span>
                         </div>
+                        <p class="text-xs text-slate-400 mt-1">Note : WhatsApp peut être restreint pour certains numéros.</p>
                     </div>
                     <div class="mt-8 grid sm:grid-cols-3 gap-4">
                         <div class="glass rounded-2xl p-4">
