@@ -38,6 +38,11 @@ jobs:
       - name: Install composer deps (prod)
         run: composer install --no-dev --prefer-dist --optimize-autoloader
 
+      - name: Prepare storage and cache dirs
+        run: |
+          mkdir -p storage/framework/sessions storage/framework/cache storage/framework/cache/data storage/framework/views storage/logs bootstrap/cache
+          touch storage/framework/sessions/.gitkeep storage/framework/cache/.gitkeep storage/framework/cache/data/.gitkeep storage/framework/views/.gitkeep storage/logs/.gitkeep bootstrap/cache/.gitkeep
+
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -46,8 +51,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_REMOTE_DIR || '/' }}
           exclude: |
-            **/.git*
-            **/.github*
+            **/.git/**
+            **/.github/**
             node_modules/**
             tests/**
             vendor/bin/**
