@@ -22,9 +22,10 @@
             </div>
             <div class="hidden md:flex items-center gap-6 text-sm text-slate-200">
                 <a href="#features" class="hover:text-white transition">Fonctionnalités</a>
+                <a href="#steps" class="hover:text-white transition">Comment ça marche</a>
                 <a href="#faq" class="hover:text-white transition">FAQ</a>
                 <a href="{{ url('/chat') }}" class="px-4 py-2 rounded-full pill text-white border border-slate-700 hover:border-slate-500 transition shadow-glow">
-                    Lancer CamerHub Web
+                    Démarrer sur le web
                 </a>
             </div>
         </nav>
@@ -34,30 +35,29 @@
                 <div>
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full pill text-xs text-sky-100 border border-slate-700">
                         <span class="w-2 h-2 rounded-full bg-sky-300 pulse"></span>
-                        Temps réel · IA générative · 2025-ready
+                        Trouve un emploi au Cameroun
                     </div>
                     <h1 class="mt-6 text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight font-[var(--font-display)]">
-                        L’agent IA CamerHub qui répond, matche et postule pour vous.
+                        Lila t’aide à décrocher le bon job, simplement.
                     </h1>
                     <p class="mt-4 text-lg text-slate-200 leading-relaxed max-w-2xl">
-                        Discutez en direct avec Lila, l’IA qui trouve les offres qui vous correspondent, génère vos CV
-                        optimisés et suit vos candidatures. Web, WhatsApp, notifications — tout en un.
+                        On te propose des offres adaptées à ton profil, on prépare ton CV et ta lettre, et on t’alerte dès qu’une opportunité correspond. Disponible sur le web et sur WhatsApp.
                     </p>
                     <div class="mt-6 flex flex-wrap items-center gap-3">
                         <a href="{{ url('/chat') }}" class="px-5 py-3 rounded-full gradient-border relative overflow-hidden text-white font-semibold shadow-glow">
-                            <span class="relative z-10">Lancer CamerHub Web</span>
+                            <span class="relative z-10">Démarrer sur le web</span>
                         </a>
                         <a href="https://wa.me/" target="_blank" class="px-5 py-3 rounded-full pill text-slate-200 border border-slate-700 hover:border-slate-500 transition">
                             Continuer sur WhatsApp
                         </a>
                         <div class="flex items-center gap-3 text-slate-300 text-sm">
                             <div class="w-8 h-8 rounded-full glass flex items-center justify-center text-xs">24/7</div>
-                            <span>Réponses instantanées · en français et anglais</span>
+                            <span>Réponses rapides · en français et anglais</span>
                         </div>
                     </div>
                     <div class="mt-8 grid sm:grid-cols-3 gap-4">
                         <div class="glass rounded-2xl p-4">
-                            <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Match IA</p>
+                            <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Offres ciblées</p>
                             <p class="text-2xl font-semibold text-white">+72%</p>
                             <p class="text-sm text-slate-300">taux moyen de correspondance</p>
                         </div>
@@ -67,9 +67,9 @@
                             <p class="text-sm text-slate-300">envoyées automatiquement</p>
                         </div>
                         <div class="glass rounded-2xl p-4">
-                            <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Temps réel</p>
+                            <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Alertes</p>
                             <p class="text-2xl font-semibold text-white">1.2s</p>
-                            <p class="text-sm text-slate-300">latence moyenne des réponses</p>
+                            <p class="text-sm text-slate-300">réponse moyenne</p>
                         </div>
                     </div>
                 </div>
@@ -110,30 +110,53 @@
             <div class="flex items-center justify-between mb-8">
                 <div>
                     <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Plateforme</p>
-                    <h2 class="text-3xl font-semibold text-white mt-2 font-[var(--font-display)]">Pensé pour 2025 : rapide, clair, multicanal.</h2>
-                    <p class="text-slate-300 mt-2">IA + WhatsApp + Web en un flux unifié, avec scoring en direct.</p>
+                    <h2 class="text-3xl font-semibold text-white mt-2 font-[var(--font-display)]">Simple, rapide, pensée pour toi.</h2>
+                    <p class="text-slate-300 mt-2">Web ou WhatsApp : la même expérience, sans jargon.</p>
                 </div>
                 <div class="hidden md:flex gap-2">
-                    <span class="px-3 py-1 text-xs rounded-full pill text-slate-200 border border-slate-700">Gemini 2.0</span>
-                    <span class="px-3 py-1 text-xs rounded-full pill text-slate-200 border border-slate-700">Webhook n8n</span>
-                    <span class="px-3 py-1 text-xs rounded-full pill text-slate-200 border border-slate-700">Temps réel</span>
+                    <span class="px-3 py-1 text-xs rounded-full pill text-slate-200 border border-slate-700">Alertes</span>
+                    <span class="px-3 py-1 text-xs rounded-full pill text-slate-200 border border-slate-700">CV prêts</span>
+                    <span class="px-3 py-1 text-xs rounded-full pill text-slate-200 border border-slate-700">WhatsApp + Web</span>
                 </div>
             </div>
             <div class="grid md:grid-cols-3 gap-4">
                 <div class="glass rounded-3xl p-5 shadow-glow">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-400 mb-2">Matching IA</p>
-                    <h3 class="text-xl text-white font-semibold mb-2">Scores live & recommandations</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">Analyse IA des offres (match, qualité, urgence) et priorisation automatique.</p>
+                    <p class="text-sm uppercase tracking-[0.2em] text-slate-400 mb-2">Offres pour toi</p>
+                    <h3 class="text-xl text-white font-semibold mb-2">On filtre, tu choisis</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">On met en avant les offres qui te correspondent, pas tout le marché.</p>
                 </div>
                 <div class="glass rounded-3xl p-5 shadow-glow">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-400 mb-2">Candidatures auto</p>
-                    <h3 class="text-xl text-white font-semibold mb-2">CV + lettres générés</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">CV HTML/PDF et lettres personnalisées, prêts à être envoyés.</p>
+                    <p class="text-sm uppercase tracking-[0.2em] text-slate-400 mb-2">CV + lettre</p>
+                    <h3 class="text-xl text-white font-semibold mb-2">Prêt en quelques secondes</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">On génère pour toi un CV et une lettre. Tu relis, tu envoies.</p>
                 </div>
                 <div class="glass rounded-3xl p-5 shadow-glow">
                     <p class="text-sm uppercase tracking-[0.2em] text-slate-400 mb-2">Multicanal</p>
-                    <h3 class="text-xl text-white font-semibold mb-2">Web & WhatsApp synchronisés</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">Conversations centralisées, messages journalisés en base pour suivi.</p>
+                    <h3 class="text-xl text-white font-semibold mb-2">Web & WhatsApp</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">Tu discutes où tu veux, les messages restent synchronisés.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="steps" class="max-w-7xl mx-auto px-6 pb-14">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <p class="text-xs uppercase tracking-[0.25em] text-slate-400">Comment ça marche</p>
+                    <h2 class="text-3xl font-semibold text-white mt-2 font-[var(--font-display)]">En 4 étapes simples</h2>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-4 gap-3">
+                <div class="glass rounded-2xl p-4 border border-slate-800">
+                    <p class="text-slate-300 text-sm">1. Démarre sur le web ou WhatsApp</p>
+                </div>
+                <div class="glass rounded-2xl p-4 border border-slate-800">
+                    <p class="text-slate-300 text-sm">2. Dis-nous ton métier, ta ville et tes attentes</p>
+                </div>
+                <div class="glass rounded-2xl p-4 border border-slate-800">
+                    <p class="text-slate-300 text-sm">3. On te propose des offres et on prépare CV + lettre</p>
+                </div>
+                <div class="glass rounded-2xl p-4 border border-slate-800">
+                    <p class="text-slate-300 text-sm">4. Tu envoies et tu reçois les alertes quand ça matche</p>
                 </div>
             </div>
         </section>
@@ -157,7 +180,7 @@
                     <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=80" alt="Emmanuel, Dev Backend" class="w-full h-40 object-cover rounded-2xl mb-3 border border-slate-800">
                     <p class="text-white font-semibold">Emmanuel · Dev Backend</p>
                     <p class="text-slate-400 text-sm">Yaoundé · Match 76%</p>
-                    <p class="text-slate-300 text-sm mt-2">“Analyse IA des offres, CV ATS-friendly généré, candidature envoyée automatiquement.”</p>
+                    <p class="text-slate-300 text-sm mt-2">“On m’a proposé les bonnes offres, CV + lettre prêts. Candidature envoyée le jour même.”</p>
                 </div>
                 <div class="glass rounded-3xl p-4 border border-slate-800">
                     <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" alt="Aïcha, Data Analyst" class="w-full h-40 object-cover rounded-2xl mb-3 border border-slate-800">
