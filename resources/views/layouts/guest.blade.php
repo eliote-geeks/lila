@@ -7,24 +7,24 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+    <body class="antialiased">
+        <div class="min-h-screen flex flex-col items-center justify-center px-4 py-10">
+            <a href="/" class="mb-6 inline-flex items-center gap-3 text-slate-100">
+                <div class="w-12 h-12 rounded-2xl glass shadow-glow flex items-center justify-center">
+                    <span class="text-sky-200 font-semibold text-lg">CH</span>
+                </div>
+                <div>
+                    <p class="text-white font-semibold leading-tight">CamerHub</p>
+                    <p class="text-slate-400 text-xs">Assistant emploi · Web & WhatsApp</p>
+                </div>
+            </a>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md glass border border-slate-800 shadow-glow rounded-3xl px-6 py-6 text-slate-100">
                 {{ $slot }}
             </div>
+            <p class="text-slate-400 text-xs mt-4">Besoin d’aide ? <a href="https://wa.me/237672251531" class="text-sky-300 underline">WhatsApp</a> ou <a href="/" class="text-sky-300 underline">Retour à l’accueil</a></p>
         </div>
     </body>
 </html>
