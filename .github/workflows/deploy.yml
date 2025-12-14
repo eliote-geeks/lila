@@ -51,7 +51,5 @@ jobs:
             node_modules/**
             tests/**
             vendor/bin/**
-            storage/framework/sessions/**
-            storage/framework/cache/**
             .env
           local-dir: ./
