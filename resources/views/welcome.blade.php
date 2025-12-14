@@ -55,6 +55,11 @@
                             <span>Réponses rapides · en français et anglais</span>
                         </div>
                         <p class="text-xs text-slate-400 mt-1">Note : WhatsApp peut être restreint pour certains numéros.</p>
+                        <div class="flex items-center gap-3 text-sm text-slate-300 mt-2">
+                            <a href="{{ url('/login') }}" class="underline text-sky-300">Se connecter</a>
+                            <span class="text-slate-500">|</span>
+                            <a href="{{ url('/register') }}" class="underline text-sky-300">Créer un compte</a>
+                        </div>
                     </div>
                     <div class="mt-8 grid sm:grid-cols-3 gap-4">
                         <div class="glass rounded-2xl p-4">
