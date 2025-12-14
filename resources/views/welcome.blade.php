@@ -44,10 +44,10 @@
                         On te propose des offres adaptées à ton profil, on prépare ton CV et ta lettre, et on t’alerte dès qu’une opportunité correspond. Disponible sur le web et sur WhatsApp.
                     </p>
                     <div class="mt-6 flex flex-wrap items-center gap-3">
-                        <a href="{{ url('/chat') }}" class="px-5 py-3 rounded-full gradient-border relative overflow-hidden text-white font-semibold shadow-glow">
-                            <span class="relative z-10">Démarrer sur le web</span>
+                        <a href="{{ url('/chat') }}" class="btn-primary">
+                            Démarrer sur le web
                         </a>
-                        <a href="https://wa.me/237672251531" target="_blank" class="px-5 py-3 rounded-full pill text-slate-200 border border-slate-700 hover:border-slate-500 transition">
+                        <a href="https://wa.me/237672251531" target="_blank" class="btn-secondary">
                             Démarrer sur WhatsApp
                         </a>
                         <div class="flex items-center gap-3 text-slate-300 text-sm">
