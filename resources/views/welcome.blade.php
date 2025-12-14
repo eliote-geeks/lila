@@ -147,16 +147,16 @@
             </div>
             <div class="grid md:grid-cols-4 gap-3">
                 <div class="glass rounded-2xl p-4 border border-slate-800">
-                    <p class="text-slate-300 text-sm">1. Démarre sur le web ou WhatsApp</p>
+                    <p class="text-slate-300 text-sm">1. Tu démarres sur le web ou WhatsApp avec Lila</p>
                 </div>
                 <div class="glass rounded-2xl p-4 border border-slate-800">
-                    <p class="text-slate-300 text-sm">2. Dis-nous ton métier, ta ville et tes attentes</p>
+                    <p class="text-slate-300 text-sm">2. Tu partages ton métier, ta ville, tes attentes (salaire, secteur)</p>
                 </div>
                 <div class="glass rounded-2xl p-4 border border-slate-800">
-                    <p class="text-slate-300 text-sm">3. On te propose des offres et on prépare CV + lettre</p>
+                    <p class="text-slate-300 text-sm">3. Lila trie les offres et te propose les meilleurs matchs</p>
                 </div>
                 <div class="glass rounded-2xl p-4 border border-slate-800">
-                    <p class="text-slate-300 text-sm">4. Tu envoies et tu reçois les alertes quand ça matche</p>
+                    <p class="text-slate-300 text-sm">4. On prépare CV + lettre, tu valides et on envoie. Tu reçois les alertes.</p>
                 </div>
             </div>
         </section>
