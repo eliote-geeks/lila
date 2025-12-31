@@ -1,0 +1,284 @@
+{
+  "name": "CamerHub - Profil Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "camerhub-profile",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook_profile",
+      "name": "Webhook Profil",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -820,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "rules",
+        "dataType": "string",
+        "value1": "={{ ($json.body && $json.body.action) || $json.action }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal",
+              "value2": "get_candidate",
+              "outputKey": "get_candidate"
+            },
+            {
+              "operation": "equal",
+              "value2": "upsert_candidate",
+              "outputKey": "upsert_candidate"
+            },
+            {
+              "operation": "equal",
+              "value2": "__fallback__",
+              "outputKey": "fallback"
+            }
+          ]
+        },
+        "fallbackOutput": 2
+      },
+      "id": "switch_action",
+      "name": "Switch Action",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [
+        -600,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  first_name,\n  last_name,\n  email,\n  phone,\n  location,\n  current_title,\n  years_experience,\n  education_level,\n  array_to_string(skills, ', ') as skills,\n  array_to_string(languages, ', ') as languages,\n  array_to_string(desired_positions, ', ') as desired_positions,\n  array_to_string(desired_sectors, ', ') as desired_sectors,\n  array_to_string(desired_locations, ', ') as desired_locations,\n  min_salary,\n  array_to_string(contract_types, ', ') as contract_types,\n  linkedin_url,\n  portfolio_url\nFROM candidates\nWHERE email = '{{ (($json.body && $json.body.email) || $json.email || \"\").replace(/'/g, \"''\") }}'\nLIMIT 1;",
+        "options": {}
+      },
+      "id": "pg_get_candidate",
+      "name": "Get Candidate",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -380,
+        -80
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "RCIgOlmToK7XFEry",
+          "name": "job_automation_db"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first();\nif (!item || Object.keys(item.json || {}).length === 0) {\n  return [{ json: { candidate: null } }];\n}\nreturn [{ json: { candidate: item.json } }];"
+      },
+      "id": "format_candidate",
+      "name": "Format Candidate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body || $json;\nconst input = body.candidate || {};\nconst matchEmail = String(body.match_email || input.email || '').trim();\n\nconst clean = (v) => {\n  if (v === null || v === undefined) return null;\n  const s = String(v).trim();\n  return s === '' ? null : s.replace(/'/g, \"''\");\n};\nconst cleanInt = (v) => {\n  if (v === null || v === undefined || v === '') return null;\n  const n = parseInt(v, 10);\n  return Number.isFinite(n) ? n : null;\n};\nconst sqlVal = (v) => (v === null ? 'NULL' : `'${v}'`);\nconst sqlInt = (v) => (v === null ? 'NULL' : v);\nconst arrVal = (v) => (v === null ? 'NULL' : `string_to_array('${v}', ',')`);\n\nconst data = {\n  first_name: clean(input.first_name),\n  last_name: clean(input.last_name),\n  email: clean(input.email),\n  phone: clean(input.phone),\n  location: clean(input.location),\n  current_title: clean(input.current_title),\n  years_experience: cleanInt(input.years_experience),\n  education_level: clean(input.education_level),\n  skills: clean(input.skills),\n  languages: clean(input.languages),\n  desired_positions: clean(input.desired_positions),\n  desired_sectors: clean(input.desired_sectors),\n  desired_locations: clean(input.desired_locations),\n  min_salary: cleanInt(input.min_salary),\n  contract_types: clean(input.contract_types),\n  linkedin_url: clean(input.linkedin_url),\n  portfolio_url: clean(input.portfolio_url)\n};\n\nconst sql = `WITH updated AS (\n  UPDATE candidates\n  SET\n    first_name = ${sqlVal(data.first_name)},\n    last_name = ${sqlVal(data.last_name)},\n    email = ${sqlVal(data.email)},\n    phone = ${sqlVal(data.phone)},\n    location = ${sqlVal(data.location)},\n    current_title = ${sqlVal(data.current_title)},\n    years_experience = ${sqlInt(data.years_experience)},\n    education_level = ${sqlVal(data.education_level)},\n    skills = ${arrVal(data.skills)},\n    languages = ${arrVal(data.languages)},\n    desired_positions = ${arrVal(data.desired_positions)},\n    desired_sectors = ${arrVal(data.desired_sectors)},\n    desired_locations = ${arrVal(data.desired_locations)},\n    min_salary = ${sqlInt(data.min_salary)},\n    contract_types = ${arrVal(data.contract_types)},\n    linkedin_url = ${sqlVal(data.linkedin_url)},\n    portfolio_url = ${sqlVal(data.portfolio_url)}\n  WHERE email = ${sqlVal(clean(matchEmail))}\n  RETURNING id\n)\nINSERT INTO candidates (\n  first_name, last_name, email, phone, location, current_title,\n  years_experience, education_level, skills, languages,\n  desired_positions, desired_sectors, desired_locations,\n  min_salary, contract_types, linkedin_url, portfolio_url\n)\nSELECT\n  ${sqlVal(data.first_name)},\n  ${sqlVal(data.last_name)},\n  ${sqlVal(data.email)},\n  ${sqlVal(data.phone)},\n  ${sqlVal(data.location)},\n  ${sqlVal(data.current_title)},\n  ${sqlInt(data.years_experience)},\n  ${sqlVal(data.education_level)},\n  ${arrVal(data.skills)},\n  ${arrVal(data.languages)},\n  ${arrVal(data.desired_positions)},\n  ${arrVal(data.desired_sectors)},\n  ${arrVal(data.desired_locations)},\n  ${sqlInt(data.min_salary)},\n  ${arrVal(data.contract_types)},\n  ${sqlVal(data.linkedin_url)},\n  ${sqlVal(data.portfolio_url)}\nWHERE NOT EXISTS (SELECT 1 FROM updated)\nON CONFLICT (email) DO UPDATE SET\n  first_name = EXCLUDED.first_name,\n  last_name = EXCLUDED.last_name,\n  phone = EXCLUDED.phone,\n  location = EXCLUDED.location,\n  current_title = EXCLUDED.current_title,\n  years_experience = EXCLUDED.years_experience,\n  education_level = EXCLUDED.education_level,\n  skills = EXCLUDED.skills,\n  languages = EXCLUDED.languages,\n  desired_positions = EXCLUDED.desired_positions,\n  desired_sectors = EXCLUDED.desired_sectors,\n  desired_locations = EXCLUDED.desired_locations,\n  min_salary = EXCLUDED.min_salary,\n  contract_types = EXCLUDED.contract_types,\n  linkedin_url = EXCLUDED.linkedin_url,\n  portfolio_url = EXCLUDED.portfolio_url;`;\n\nreturn [{ json: { sql } }];"
+      },
+      "id": "build_upsert_sql",
+      "name": "Build Upsert SQL",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "={{ $json.sql }}",
+        "options": {}
+      },
+      "id": "pg_upsert",
+      "name": "Upsert Candidate",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -160,
+        160
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "RCIgOlmToK7XFEry",
+          "name": "job_automation_db"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { ok: true } }];"
+      },
+      "id": "ok_response",
+      "name": "OK Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        40,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { ok: false, message: 'Action inconnue' } }];"
+      },
+      "id": "bad_request",
+      "name": "Bad Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "responseBody": "={{ $json }}",
+        "responseCode": 200
+      },
+      "id": "respond_ok",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        240,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "responseBody": "={{ $json }}",
+        "responseCode": 400
+      },
+      "id": "respond_bad",
+      "name": "Respond Bad",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        320
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Profil": {
+      "main": [
+        [
+          {
+            "node": "Switch Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Action": {
+      "main": [
+        [
+          {
+            "node": "Get Candidate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Upsert SQL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bad Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Candidate": {
+      "main": [
+        [
+          {
+            "node": "Format Candidate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Candidate": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Upsert SQL": {
+      "main": [
+        [
+          {
+            "node": "Upsert Candidate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert Candidate": {
+      "main": [
+        [
+          {
+            "node": "OK Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OK Response": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bad Request": {
+      "main": [
+        [
+          {
+            "node": "Respond Bad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
