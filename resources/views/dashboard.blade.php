@@ -22,6 +22,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tableau de bord - CamerHub</title>
+    @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/pages/dashboard.jsx'])
 </head>
 <body>
