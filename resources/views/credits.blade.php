@@ -8,8 +8,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tableau de bord - CamerHub</title>
-    @vite(['resources/css/app.css', 'resources/js/pages/dashboard.jsx'])
+    <title>Credits - CamerHub</title>
+    @vite(['resources/css/app.css', 'resources/js/pages/credits.jsx'])
 </head>
 <body>
 <div id="app"></div>
