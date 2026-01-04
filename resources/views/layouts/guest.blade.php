@@ -9,22 +9,34 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased">
-        <div class="min-h-screen flex flex-col items-center justify-center px-4 py-10">
-            <a href="/" class="mb-6 inline-flex items-center gap-3 text-slate-100">
-                <div class="w-12 h-12 rounded-2xl glass shadow-glow flex items-center justify-center">
-                    <span class="text-sky-200 font-semibold text-lg">CH</span>
-                </div>
-                <div>
-                    <p class="text-white font-semibold leading-tight">CamerHub</p>
-                    <p class="text-slate-400 text-xs">Assistant emploi · Web & WhatsApp</p>
-                </div>
-            </a>
+    <body class="antialiased bg-background text-foreground">
+        <div class="min-h-screen flex flex-col">
+            <header class="px-4 py-6">
+                <a href="/" class="flex items-center gap-2 font-heading text-xl font-bold text-foreground w-fit">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+                        <span class="text-sm font-semibold">CH</span>
+                    </div>
+                    <span>CamerHub</span>
+                </a>
+            </header>
 
-            <div class="w-full sm:max-w-md glass border border-slate-800 shadow-glow rounded-3xl px-6 py-6 text-slate-100">
-                {{ $slot }}
-            </div>
-            <p class="text-slate-400 text-xs mt-4">Besoin d’aide ? <a href="https://wa.me/237672251531" class="text-sky-300 underline">WhatsApp</a> ou <a href="/" class="text-sky-300 underline">Retour à l’accueil</a></p>
+            <main class="flex-1 flex items-center justify-center px-4 py-8">
+                <div class="w-full max-w-md">
+                    <div class="rounded-2xl border border-border bg-card shadow-lg p-6">
+                        {{ $slot }}
+                    </div>
+                    <p class="text-xs text-muted-foreground mt-4 text-center">
+                        Besoin d’aide ?
+                        <a href="https://wa.me/237672251531" class="text-primary hover:underline">WhatsApp</a>
+                        ou
+                        <a href="/" class="text-primary hover:underline">Retour à l’accueil</a>
+                    </p>
+                </div>
+            </main>
+
+            <footer class="py-4 text-center text-xs text-muted-foreground">
+                © {{ now()->year }} CamerHub. Tous droits réservés.
+            </footer>
         </div>
     </body>
 </html>

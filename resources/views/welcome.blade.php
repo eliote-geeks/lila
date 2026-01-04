@@ -7,17 +7,20 @@
     @vite(['resources/css/app.css', 'resources/js/pages/landing.jsx'])
 </head>
 <body>
+@php
+    $userData = auth()->user() ? [
+        'id' => auth()->id(),
+        'name' => auth()->user()->name,
+        'email' => auth()->user()->email,
+    ] : null;
+@endphp
 <div id="app"></div>
 <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
     @csrf
 </form>
 <script>
     window.CamerHub = {
-        user: @json(auth()->user() ? [
-            'id' => auth()->id(),
-            'name' => auth()->user()->name,
-            'email' => auth()->user()->email,
-        ] : null),
+        user: @json($userData),
         whatsappNumber: '237672251531',
     };
 </script>

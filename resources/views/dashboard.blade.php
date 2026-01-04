@@ -2,6 +2,19 @@
     $user = auth()->user();
     $wallet = $user ? app(App\Services\CreditService::class)->ensureWallet($user) : null;
     $subscription = $user?->subscription;
+    $userData = $user ? [
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'credits' => $wallet?->balance ?? 0,
+        'subscription' => $subscription ? [
+            'active' => $subscription->status === 'active',
+            'plan' => 'monthly',
+            'nextBilling' => optional($subscription->next_renewal_at)->format('Y-m-d'),
+        ] : [
+            'active' => false,
+        ],
+    ] : null;
 @endphp
 <!doctype html>
 <html lang="fr">
@@ -18,19 +31,7 @@
 </form>
 <script>
     window.CamerHub = {
-        user: @json($user ? [
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'credits' => $wallet?->balance ?? 0,
-            'subscription' => $subscription ? [
-                'active' => $subscription->status === 'active',
-                'plan' => 'monthly',
-                'nextBilling' => optional($subscription->next_renewal_at)->format('Y-m-d'),
-            ] : [
-                'active' => false,
-            ],
-        ] : null),
+        user: @json($userData),
         whatsappNumber: '237672251531',
     };
 </script>

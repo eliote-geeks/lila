@@ -1,6 +1,15 @@
 @php
     $user = auth()->user();
     $wallet = $user ? app(App\Services\CreditService::class)->ensureWallet($user) : null;
+    $userData = $user ? [
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'credits' => $wallet?->balance ?? 0,
+        'profile' => [
+            'completed' => false,
+        ],
+    ] : null;
 @endphp
 <!doctype html>
 <html lang="fr">
@@ -17,15 +26,7 @@
 </form>
 <script>
     window.CamerHub = {
-        user: @json($user ? [
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'credits' => $wallet?->balance ?? 0,
-            'profile' => [
-                'completed' => false,
-            ],
-        ] : null),
+        user: @json($userData),
         whatsappNumber: '237672251531',
     };
 </script>

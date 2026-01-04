@@ -98,6 +98,20 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'jobflow' => [
+            'driver' => 'pgsql',
+            'host' => env('JOBFLOW_DB_HOST', '127.0.0.1'),
+            'port' => env('JOBFLOW_DB_PORT', '5432'),
+            'database' => env('JOBFLOW_DB_DATABASE', 'job_automation_db'),
+            'username' => env('JOBFLOW_DB_USERNAME', 'n8n_user'),
+            'password' => env('JOBFLOW_DB_PASSWORD', ''),
+            'charset' => env('JOBFLOW_DB_CHARSET', 'utf8'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => env('JOBFLOW_DB_SSLMODE', 'prefer'),
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
