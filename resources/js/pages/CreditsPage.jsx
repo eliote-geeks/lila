@@ -139,7 +139,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                 <span className="text-xl text-white">crédits</span>
               </div>
             </div>
-            <div className="p-4 rounded-xl bg-white bg-opacity-10">
+            <div className="p-4 rounded-xl bg-white/10">
               {user.subscription?.active ? (
                 <div className="flex items-center gap-2">
                   <Star className="w-5 h-5 text-[var(--or)]" />
@@ -181,7 +181,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                     onClick={() => setSelectedPack(pack)}
                     className={`relative p-6 rounded-2xl border-2 transition-all text-left ${
                       selectedPack?.id === pack.id
-                        ? 'border-[var(--bleu-roi)] bg-[var(--bleu-roi)] bg-opacity-5 shadow-lg'
+                        ? 'border-[var(--bleu-roi)] bg-[var(--bleu-roi)]/5 shadow-lg'
                         : 'border-[var(--gris-clair)] hover:border-[var(--bleu-roi)] hover:shadow-md'
                     }`}
                   >
@@ -190,7 +190,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                         Populaire
                       </span>
                     )}
-                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--bleu-roi)] bg-opacity-10 mb-4">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--bleu-roi)]/10 mb-4">
                       <Coins className="w-6 h-6 text-[var(--bleu-roi)]" />
                     </div>
                     <p className="font-['Sora'] text-3xl font-bold text-[var(--bleu-nuit)] mb-1">
@@ -208,7 +208,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
               </div>
               
               {/* Monthly Subscription Option */}
-              <div className="mt-6 p-6 rounded-2xl border-2 border-dashed border-[var(--or)] bg-[var(--or)] bg-opacity-5">
+              <div className="mt-6 p-6 rounded-2xl border-2 border-dashed border-[var(--or)] bg-[var(--or)]/5">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <h3 className="font-['Sora'] font-semibold text-[var(--bleu-nuit)] flex items-center gap-2">
@@ -238,7 +238,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                     onClick={() => setPaymentMethod('momo')}
                     className={`p-6 rounded-2xl border-2 text-left transition-all ${
                       paymentMethod === 'momo'
-                        ? 'border-[#FFCC00] bg-[#FFCC00] bg-opacity-10'
+                        ? 'border-[#FFCC00] bg-[#FFCC00]/10'
                         : 'border-[var(--gris-clair)] hover:border-[#FFCC00]'
                     }`}
                   >
@@ -252,7 +252,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                       </div>
                     </div>
                     {paymentMethod === 'momo' && (
-                      <div className="mt-4 p-3 rounded-lg bg-[#FFCC00] bg-opacity-20">
+                      <div className="mt-4 p-3 rounded-lg bg-[#FFCC00]/20">
                         <p className="text-sm text-gray-600 mb-2">Numéro à créditer:</p>
                         <div className="flex items-center justify-between">
                           <span className="font-mono font-semibold text-[var(--bleu-nuit)]">
@@ -260,7 +260,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                           </span>
                           <button
                             onClick={() => copyToClipboard(paymentNumbers.momo)}
-                            className="p-2 rounded-lg hover:bg-[#FFCC00] hover:bg-opacity-30 transition-colors"
+                            className="p-2 rounded-lg hover:bg-[#FFCC00]/30 transition-colors"
                           >
                             <Copy className="w-4 h-4 text-gray-600" />
                           </button>
@@ -273,7 +273,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                     onClick={() => setPaymentMethod('om')}
                     className={`p-6 rounded-2xl border-2 text-left transition-all ${
                       paymentMethod === 'om'
-                        ? 'border-[#FF6600] bg-[#FF6600] bg-opacity-10'
+                        ? 'border-[#FF6600] bg-[#FF6600]/10'
                         : 'border-[var(--gris-clair)] hover:border-[#FF6600]'
                     }`}
                   >
@@ -287,7 +287,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                       </div>
                     </div>
                     {paymentMethod === 'om' && (
-                      <div className="mt-4 p-3 rounded-lg bg-[#FF6600] bg-opacity-20">
+                      <div className="mt-4 p-3 rounded-lg bg-[#FF6600]/20">
                         <p className="text-sm text-gray-600 mb-2">Numéro à créditer:</p>
                         <div className="flex items-center justify-between">
                           <span className="font-mono font-semibold text-[var(--bleu-nuit)]">
@@ -295,7 +295,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                           </span>
                           <button
                             onClick={() => copyToClipboard(paymentNumbers.om)}
-                            className="p-2 rounded-lg hover:bg-[#FF6600] hover:bg-opacity-30 transition-colors"
+                            className="p-2 rounded-lg hover:bg-[#FF6600]/30 transition-colors"
                           >
                             <Copy className="w-4 h-4 text-gray-600" />
                           </button>
@@ -360,7 +360,7 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                     </div>
                   </div>
                   
-                  <div className="mt-6 p-4 rounded-xl bg-[var(--gris-clair)] bg-opacity-50">
+                  <div className="mt-6 p-4 rounded-xl bg-[var(--gris-clair)]/50">
                     <h4 className="font-semibold text-[var(--bleu-nuit)] mb-2">Instructions:</h4>
                     <ol className="list-decimal list-inside space-y-1 text-sm text-gray-600">
                       <li>Effectuez le transfert de <strong>{selectedPack?.price} FCFA</strong> vers le numéro indiqué</li>
@@ -407,10 +407,10 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                   {mockTransactions.map((transaction) => (
                     <div 
                       key={transaction.id}
-                      className="flex items-center justify-between p-4 rounded-xl border border-[var(--gris-clair)] hover:bg-[var(--gris-clair)] hover:bg-opacity-30 transition-colors"
+                      className="flex items-center justify-between p-4 rounded-xl border border-[var(--gris-clair)] hover:bg-[var(--gris-clair)]/30 transition-colors"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-[var(--bleu-roi)] bg-opacity-10 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-xl bg-[var(--bleu-roi)]/10 flex items-center justify-center">
                           {transaction.type === 'abonnement' ? (
                             <Star className="w-6 h-6 text-[var(--or)]" />
                           ) : (

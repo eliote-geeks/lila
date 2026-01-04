@@ -38,7 +38,7 @@ const DashboardPage = ({ user = mockUser, onLogout }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--gris-clair)] bg-opacity-30">
+    <div className="min-h-screen bg-[var(--gris-clair)]/30">
       <Header user={user} onLogout={onLogout} />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -100,7 +100,7 @@ const DashboardPage = ({ user = mockUser, onLogout }) => {
                 <Button 
                   onClick={() => goTo('/chat')}
                   variant="secondary"
-                  className="h-auto py-4 flex-col gap-2 bg-white bg-opacity-10 hover:bg-opacity-20 text-white border-0"
+                  className="h-auto py-4 flex-col gap-2 bg-white/10 hover:bg-white/20 text-white border-0"
                 >
                   <Search className="w-5 h-5" />
                   <span className="text-sm">Rechercher</span>
@@ -108,7 +108,7 @@ const DashboardPage = ({ user = mockUser, onLogout }) => {
                 <Button 
                   onClick={() => goTo('/chat')}
                   variant="secondary"
-                  className="h-auto py-4 flex-col gap-2 bg-white bg-opacity-10 hover:bg-opacity-20 text-white border-0"
+                  className="h-auto py-4 flex-col gap-2 bg-white/10 hover:bg-white/20 text-white border-0"
                 >
                   <FileText className="w-5 h-5" />
                   <span className="text-sm">Générer CV</span>
@@ -116,7 +116,7 @@ const DashboardPage = ({ user = mockUser, onLogout }) => {
                 <Button 
                   onClick={() => goTo('/chat')}
                   variant="secondary"
-                  className="h-auto py-4 flex-col gap-2 bg-white bg-opacity-10 hover:bg-opacity-20 text-white border-0"
+                  className="h-auto py-4 flex-col gap-2 bg-white/10 hover:bg-white/20 text-white border-0"
                 >
                   <MessageCircle className="w-5 h-5" />
                   <span className="text-sm">Discuter</span>

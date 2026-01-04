@@ -128,7 +128,7 @@ const ProfilePage = ({ user = mockUser, onLogout }) => {
         </div>
         
         {/* Info Banner */}
-        <div className="flex items-start gap-3 p-4 rounded-xl bg-[var(--bleu-roi)] bg-opacity-5 border border-[var(--bleu-roi)] border-opacity-20 mb-8">
+        <div className="flex items-start gap-3 p-4 rounded-xl bg-[var(--bleu-roi)]/5 border border-[var(--bleu-roi)]/20 mb-8">
           <Info className="w-5 h-5 text-[var(--bleu-roi)] flex-shrink-0 mt-0.5" />
           <p className="text-sm text-[var(--bleu-nuit)]">
             <strong>Conseil :</strong> Votre profil aide Lila à mieux vous proposer des offres. 
@@ -291,7 +291,7 @@ const ProfilePage = ({ user = mockUser, onLogout }) => {
                   {formData.skills.map((skill, index) => (
                     <span 
                       key={index}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--bleu-roi)] bg-opacity-10 text-[var(--bleu-roi)]"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--bleu-roi)]/10 text-[var(--bleu-roi)]"
                     >
                       {skill}
                       <button

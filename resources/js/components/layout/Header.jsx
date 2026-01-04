@@ -56,7 +56,7 @@ const Header = ({ user, onLogout }) => {
             {user ? (
               <div className="flex items-center gap-4">
                 <a href="/credits">
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--gris-clair)] hover:bg-[var(--or)] hover:bg-opacity-20 transition-colors cursor-pointer">
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--gris-clair)] hover:bg-[var(--or)]/20 transition-colors cursor-pointer">
                     <span className="text-[var(--or)] font-semibold">{user?.credits ?? 0}</span>
                     <span className="text-sm text-[var(--bleu-nuit)]">crédits</span>
                   </div>
@@ -124,7 +124,7 @@ const Header = ({ user, onLogout }) => {
                   href={link.path}
                   className={`px-4 py-3 rounded-lg font-medium transition-colors ${
                     isActive(link.path)
-                      ? 'bg-[var(--bleu-roi)] bg-opacity-10 text-[var(--bleu-roi)]'
+                      ? 'bg-[var(--bleu-roi)]/10 text-[var(--bleu-roi)]'
                       : 'text-[var(--bleu-nuit)] hover:bg-[var(--gris-clair)]'
                   }`}
                   onClick={() => setMobileMenuOpen(false)}

@@ -98,7 +98,7 @@ const ChatPage = ({ user = mockUser, onLogout }) => {
             </div>
             
             {/* Credits */}
-            <div className="flex items-center justify-between p-4 rounded-xl bg-[var(--gris-clair)] bg-opacity-50">
+            <div className="flex items-center justify-between p-4 rounded-xl bg-[var(--gris-clair)]/50">
               <div>
                 <p className="text-sm text-gray-500">Crédits restants</p>
                 <p className="font-['Sora'] text-2xl font-bold text-[var(--bleu-roi)]">{user.credits}</p>
@@ -116,7 +116,7 @@ const ChatPage = ({ user = mockUser, onLogout }) => {
           {/* Profile Completion */}
           {!user.profile?.completed && (
             <div className="p-6 border-b border-[var(--gris-clair)]">
-              <div className="p-4 rounded-xl bg-[var(--bleu-roi)] bg-opacity-5 border border-[var(--bleu-roi)] border-opacity-20">
+              <div className="p-4 rounded-xl bg-[var(--bleu-roi)]/5 border border-[var(--bleu-roi)]/20">
                 <h4 className="font-semibold text-[var(--bleu-nuit)] mb-2">Complétez votre profil</h4>
                 <p className="text-sm text-gray-600 mb-3">
                   Votre profil aide Lila à mieux vous proposer des offres
@@ -143,7 +143,7 @@ const ChatPage = ({ user = mockUser, onLogout }) => {
                   onClick={action.action}
                   className="w-full flex items-center gap-3 p-3 rounded-lg text-left hover:bg-[var(--gris-clair)] transition-colors"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-[var(--bleu-roi)] bg-opacity-10 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-[var(--bleu-roi)]/10 flex items-center justify-center">
                     <action.icon className="w-5 h-5 text-[var(--bleu-roi)]" />
                   </div>
                   <span className="text-[var(--bleu-nuit)]">{action.label}</span>
@@ -261,7 +261,7 @@ const ChatPage = ({ user = mockUser, onLogout }) => {
                 <button
                   key={index}
                   onClick={action.action}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--gris-clair)] whitespace-nowrap hover:bg-[var(--bleu-roi)] hover:bg-opacity-10 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--gris-clair)] whitespace-nowrap hover:bg-[var(--bleu-roi)]/10 transition-colors"
                 >
                   <action.icon className="w-4 h-4 text-[var(--bleu-roi)]" />
                   <span className="text-sm text-[var(--bleu-nuit)]">{action.label}</span>

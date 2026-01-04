@@ -66,7 +66,7 @@ const LoginPage = () => {
           </form>
           
           {/* Benefits */}
-          <div className="mt-8 p-4 rounded-xl bg-[var(--bleu-roi)] bg-opacity-5">
+          <div className="mt-8 p-4 rounded-xl bg-[var(--bleu-roi)]/5">
             <h3 className="font-semibold text-[var(--bleu-nuit)] mb-3 text-center">
               30 crédits gratuits à l'inscription !
             </h3>

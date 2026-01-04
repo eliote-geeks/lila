@@ -51,7 +51,7 @@ const LandingPage = ({ user, onLogout }) => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-slideUp">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--or)] bg-opacity-20 border border-[var(--or)] border-opacity-30">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--or)]/20 border border-[var(--or)]/30">
                 <Sparkles className="w-4 h-4 text-[var(--or)]" />
                 <span className="text-sm font-medium text-[var(--bleu-nuit)]">Votre assistante emploi intelligente</span>
               </div>
@@ -104,7 +104,7 @@ const LandingPage = ({ user, onLogout }) => {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <div className="bg-[var(--bleu-roi)] bg-opacity-10 rounded-2xl rounded-tl-none p-4">
+                    <div className="bg-[var(--bleu-roi)]/10 rounded-2xl rounded-tl-none p-4">
                       <p className="text-[var(--bleu-nuit)]">
                         Bonjour ! J'ai trouvé <strong>5 offres</strong> qui correspondent à votre profil aujourd'hui 🎉
                       </p>
@@ -145,7 +145,7 @@ const LandingPage = ({ user, onLogout }) => {
                 key={index}
                 className="group p-8 rounded-2xl bg-[var(--blanc)] border border-[var(--gris-clair)] hover:border-[var(--bleu-roi)] hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-14 h-14 rounded-xl bg-[var(--bleu-roi)] bg-opacity-10 flex items-center justify-center mb-6 group-hover:bg-[var(--bleu-roi)] transition-colors">
+                <div className="w-14 h-14 rounded-xl bg-[var(--bleu-roi)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--bleu-roi)] transition-colors">
                   <item.icon className="w-7 h-7 text-[var(--bleu-roi)] group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-['Sora'] font-semibold text-xl text-[var(--bleu-nuit)] mb-3">{item.title}</h3>
@@ -157,7 +157,7 @@ const LandingPage = ({ user, onLogout }) => {
       </section>
 
       {/* How it Works Section */}
-      <section className="py-20 bg-[var(--gris-clair)] bg-opacity-50">
+      <section className="py-20 bg-[var(--gris-clair)]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-['Sora'] text-3xl lg:text-4xl font-bold text-[var(--bleu-nuit)] mb-4">
@@ -245,7 +245,7 @@ const LandingPage = ({ user, onLogout }) => {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Free Plan */}
-            <div className="p-8 rounded-2xl bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20">
+            <div className="p-8 rounded-2xl bg-white/10 backdrop-blur border border-white/20">
               <h3 className="font-['Sora'] text-2xl font-bold text-white mb-2">Essai gratuit</h3>
               <p className="text-white mb-6">Pour découvrir CamerHub</p>
               <div className="mb-8">
@@ -319,7 +319,7 @@ const LandingPage = ({ user, onLogout }) => {
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="border border-[var(--gris-clair)] rounded-xl px-6 data-[state=open]:bg-[var(--gris-clair)] data-[state=open]:bg-opacity-30 transition-colors"
+                className="border border-[var(--gris-clair)] rounded-xl px-6 data-[state=open]:bg-[var(--gris-clair)]/30 transition-colors"
               >
                 <AccordionTrigger className="text-left font-semibold text-[var(--bleu-nuit)] hover:text-[var(--bleu-roi)] py-5">
                   {item.question}
