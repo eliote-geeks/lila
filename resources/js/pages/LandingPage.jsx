@@ -238,7 +238,7 @@ const LandingPage = ({ user, onLogout }) => {
             <h2 className="font-['Sora'] text-3xl lg:text-4xl font-bold text-white mb-4">
               Tarifs simples et transparents
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="text-white max-w-2xl mx-auto">
               Commencez gratuitement, payez uniquement si vous avez besoin de plus
             </p>
           </div>
@@ -247,14 +247,14 @@ const LandingPage = ({ user, onLogout }) => {
             {/* Free Plan */}
             <div className="p-8 rounded-2xl bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20">
               <h3 className="font-['Sora'] text-2xl font-bold text-white mb-2">Essai gratuit</h3>
-              <p className="text-gray-400 mb-6">Pour découvrir CamerHub</p>
+              <p className="text-white mb-6">Pour découvrir CamerHub</p>
               <div className="mb-8">
                 <span className="text-4xl font-bold text-[var(--or)]">30</span>
                 <span className="text-xl text-white ml-2">crédits offerts</span>
               </div>
               <ul className="space-y-4 mb-8">
                 {['Discuter avec Lila', 'Recherche d\'offres', 'Analyse de postes', 'Accès WhatsApp'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-300">
+                  <li key={i} className="flex items-center gap-3 text-white">
                     <Check className="w-5 h-5 text-[var(--or)]" />
                     {item}
                   </li>
@@ -339,7 +339,7 @@ const LandingPage = ({ user, onLogout }) => {
           <h2 className="font-['Sora'] text-3xl lg:text-4xl font-bold text-white mb-6">
             Prêt à trouver votre prochain emploi ?
           </h2>
-          <p className="text-xl text-gray-300 mb-10">
+          <p className="text-xl text-white mb-10">
             Rejoignez des milliers de Camerounais qui font confiance à Lila
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

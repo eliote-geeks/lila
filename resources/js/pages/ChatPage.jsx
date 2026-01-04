@@ -196,7 +196,7 @@ const ChatPage = ({ user = mockUser, onLogout }) => {
                       }`}
                     >
                       <p className="whitespace-pre-wrap">{formatMessage(message.text)}</p>
-                      <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-blue-200' : 'text-gray-500'}`}>
+                      <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white' : 'text-gray-500'}`}>
                         {message.timestamp}
                       </p>
                     </div>

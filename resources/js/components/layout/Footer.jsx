@@ -16,7 +16,7 @@ const Footer = () => {
                 Camer<span className="text-[var(--or)]">Hub</span>
               </span>
             </a>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-white text-sm leading-relaxed">
               Votre assistante intelligente pour trouver l'emploi de vos rêves au Cameroun.
             </p>
             <div className="flex items-center gap-2 text-[var(--or)]">
@@ -30,22 +30,22 @@ const Footer = () => {
             <h4 className="font-['Sora'] font-semibold text-lg mb-4">Navigation</h4>
             <ul className="space-y-3">
               <li>
-                <a href="/" className="text-gray-400 hover:text-[var(--or)] transition-colors">
+                <a href="/" className="text-white hover:text-[var(--or)] transition-colors">
                   Accueil
                 </a>
               </li>
               <li>
-                <a href="/dashboard" className="text-gray-400 hover:text-[var(--or)] transition-colors">
+                <a href="/dashboard" className="text-white hover:text-[var(--or)] transition-colors">
                   Tableau de bord
                 </a>
               </li>
               <li>
-                <a href="/chat" className="text-gray-400 hover:text-[var(--or)] transition-colors">
+                <a href="/chat" className="text-white hover:text-[var(--or)] transition-colors">
                   Discuter avec Lila
                 </a>
               </li>
               <li>
-                <a href="/credits" className="text-gray-400 hover:text-[var(--or)] transition-colors">
+                <a href="/credits" className="text-white hover:text-[var(--or)] transition-colors">
                   Acheter des crédits
                 </a>
               </li>
@@ -57,22 +57,22 @@ const Footer = () => {
             <h4 className="font-['Sora'] font-semibold text-lg mb-4">Informations</h4>
             <ul className="space-y-3">
               <li>
-                <a href="/#pricing" className="text-gray-400 hover:text-[var(--or)] transition-colors">
+                <a href="/#pricing" className="text-white hover:text-[var(--or)] transition-colors">
                   Tarifs
                 </a>
               </li>
               <li>
-                <a href="/#faq" className="text-gray-400 hover:text-[var(--or)] transition-colors">
+                <a href="/#faq" className="text-white hover:text-[var(--or)] transition-colors">
                   FAQ
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-[var(--or)] transition-colors">
+                <a href="#" className="text-white hover:text-[var(--or)] transition-colors">
                   Conditions d'utilisation
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-[var(--or)] transition-colors">
+                <a href="#" className="text-white hover:text-[var(--or)] transition-colors">
                   Politique de confidentialité
                 </a>
               </li>
@@ -83,15 +83,15 @@ const Footer = () => {
           <div>
             <h4 className="font-['Sora'] font-semibold text-lg mb-4">Contact</h4>
             <ul className="space-y-3">
-              <li className="flex items-center gap-3 text-gray-400">
+              <li className="flex items-center gap-3 text-white">
                 <Mail className="w-5 h-5 text-[var(--or)]" />
                 <span>contact@camerhub.cm</span>
               </li>
-              <li className="flex items-center gap-3 text-gray-400">
+              <li className="flex items-center gap-3 text-white">
                 <Phone className="w-5 h-5 text-[var(--or)]" />
                 <span>+237 672 251 531</span>
               </li>
-              <li className="flex items-center gap-3 text-gray-400">
+              <li className="flex items-center gap-3 text-white">
                 <MapPin className="w-5 h-5 text-[var(--or)]" />
                 <span>Douala, Cameroun</span>
               </li>
@@ -102,10 +102,10 @@ const Footer = () => {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">
+            <p className="text-white text-sm">
               © 2025 CamerHub. Tous droits réservés.
             </p>
-            <p className="text-gray-500 text-xs">
+            <p className="text-white text-xs">
               Fait avec ❤️ au Cameroun
             </p>
           </div>

@@ -132,11 +132,11 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
         <div className="p-6 rounded-2xl bg-gradient-to-br from-[var(--bleu-roi)] to-[var(--bleu-nuit)] text-white mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <p className="text-blue-200 mb-1">Solde actuel</p>
+              <p className="text-white mb-1">Solde actuel</p>
               <div className="flex items-center gap-3">
                 <Coins className="w-8 h-8 text-[var(--or)]" />
                 <span className="font-['Sora'] text-4xl font-bold">{user.credits}</span>
-                <span className="text-xl text-blue-200">crédits</span>
+                <span className="text-xl text-white">crédits</span>
               </div>
             </div>
             <div className="p-4 rounded-xl bg-white bg-opacity-10">
@@ -145,15 +145,15 @@ const CreditsPage = ({ user = mockUser, onLogout }) => {
                   <Star className="w-5 h-5 text-[var(--or)]" />
                   <div>
                     <p className="font-semibold">Abonnement actif</p>
-                    <p className="text-sm text-blue-200">Renouvellement: {user.subscription.nextBilling}</p>
+                    <p className="text-sm text-white">Renouvellement: {user.subscription.nextBilling}</p>
                   </div>
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <AlertCircle className="w-5 h-5 text-yellow-400" />
+                  <AlertCircle className="w-5 h-5 text-white" />
                   <div>
                     <p className="font-semibold">Pas d'abonnement</p>
-                    <p className="text-sm text-blue-200">Achat à l'unité</p>
+                    <p className="text-sm text-white">Achat à l'unité</p>
                   </div>
                 </div>
               )}

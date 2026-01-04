@@ -89,11 +89,11 @@ const DashboardPage = ({ user = mockUser, onLogout }) => {
             <div className="p-6 rounded-2xl bg-gradient-to-br from-[var(--bleu-roi)] to-[var(--bleu-nuit)] text-white">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-[var(--or)] flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-[var(--bleu-nuit)]" />
+                  <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <h3 className="font-['Sora'] font-semibold">Actions rapides avec Lila</h3>
-                  <p className="text-sm text-blue-200">Que souhaitez-vous faire ?</p>
+                  <p className="text-sm text-white">Que souhaitez-vous faire ?</p>
                 </div>
               </div>
               <div className="grid sm:grid-cols-3 gap-3">
