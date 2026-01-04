@@ -261,7 +261,7 @@ const LandingPage = ({ user, onLogout }) => {
                 ))}
               </ul>
               <Button 
-                onClick={handleGoogleLogin}
+                onClick={handleWebStart}
                 variant="outline"
                 className="w-full py-6 text-lg border-white text-white hover:bg-white hover:text-[var(--bleu-nuit)] transition-all"
               >
@@ -292,7 +292,7 @@ const LandingPage = ({ user, onLogout }) => {
                 ))}
               </ul>
               <Button 
-                onClick={handleGoogleLogin}
+                onClick={handleWebStart}
                 className="btn-gold w-full py-6 text-lg"
               >
                 S'abonner maintenant
@@ -344,7 +344,7 @@ const LandingPage = ({ user, onLogout }) => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-              onClick={handleGoogleLogin}
+              onClick={handleWebStart}
               className="btn-gold text-lg px-10 py-5 h-auto animate-glow"
             >
               Créer mon compte gratuit
