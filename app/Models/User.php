@@ -45,4 +45,24 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function creditWallet()
+    {
+        return $this->hasOne(CreditWallet::class);
+    }
+
+    public function creditTransactions()
+    {
+        return $this->hasMany(CreditTransaction::class);
+    }
+
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class);
+    }
+
+    public function creditPurchases()
+    {
+        return $this->hasMany(CreditPurchase::class);
+    }
 }
