@@ -7,7 +7,11 @@ use Illuminate\Auth\Events\Registered;
 
 class GrantSignupCredits
 {
-    public function handle(Registered $event, CreditService $credits): void
+    public function __construct(private readonly CreditService $credits)
+    {
+    }
+
+    public function handle(Registered $event): void
     {
         $user = $event->user;
 
@@ -15,6 +19,6 @@ class GrantSignupCredits
             return;
         }
 
-        $credits->grantSignupCredits($user);
+        $this->credits->grantSignupCredits($user);
     }
 }
