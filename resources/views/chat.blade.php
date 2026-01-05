@@ -28,6 +28,9 @@
 <script>
     window.CamerHub = {
         user: @json($userData),
+        csrfToken: '{{ csrf_token() }}',
+        chatEndpoint: '{{ route('chat.send') }}',
+        chatHistoryEndpoint: '{{ route('chat.history') }}',
         whatsappNumber: '237672251531',
     };
 </script>

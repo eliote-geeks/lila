@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CreditController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::middleware('auth')->group(function () {
     })->name('credits.view');
 
     Route::prefix('api')->group(function () {
+        Route::get('/chat/history', [ChatController::class, 'history'])->name('chat.history');
+        Route::post('/chat/send', [ChatController::class, 'send'])->name('chat.send');
         Route::get('/credits', [CreditController::class, 'show'])->name('credits.show');
         Route::get('/credits/transactions', [CreditController::class, 'transactions'])->name('credits.transactions');
         Route::post('/credits/consume', [CreditController::class, 'consume'])->name('credits.consume');
