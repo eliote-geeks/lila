@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  MapPin, 
+import React from 'react';
+import {
+  User,
+  Mail,
+  Phone,
+  MapPin,
   Briefcase,
   GraduationCap,
   FileText,
-  Plus,
-  X,
   Save,
   ArrowLeft,
-  Info
+  Info,
+  Link as LinkIcon,
+  Wallet,
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Textarea } from '../components/ui/textarea';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../components/ui/select';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { mockUser } from '../data/mock';
@@ -36,79 +29,20 @@ const ProfilePage = ({ user = mockUser, onLogout }) => {
     }
     window.location.href = '/dashboard';
   };
-  const [formData, setFormData] = useState({
-    name: user.name || '',
-    email: user.email || '',
-    phone: user.profile?.phone || '',
-    city: user.profile?.city || '',
-    experience: user.profile?.experience || '',
-    sector: user.profile?.sector || '',
-    education: user.profile?.education || '',
-    skills: user.profile?.skills || [],
-    bio: '',
-  });
-  const [newSkill, setNewSkill] = useState('');
-  const [saving, setSaving] = useState(false);
 
-  const cities = [
-    'Douala', 'Yaoundé', 'Bafoussam', 'Bamenda', 'Garoua', 
-    'Maroua', 'Ngaoundéré', 'Bertoua', 'Ebolowa', 'Kribi'
-  ];
+  const defaults = window?.CamerHub?.profileForm || {};
+  const errors = window?.CamerHub?.errors || {};
+  const status = window?.CamerHub?.status || null;
+  const csrfToken = window?.CamerHub?.csrfToken || '';
 
-  const sectors = [
-    'Informatique & Tech', 'Finance & Comptabilité', 'Marketing & Communication',
-    'Vente & Commerce', 'Ressources Humaines', 'Santé', 'Enseignement',
-    'BTP & Construction', 'Agriculture', 'Transport & Logistique', 'Autre'
-  ];
-
-  const experienceLevels = [
-    'Débutant (0-1 an)', '2-3 ans', '4-5 ans', '6-10 ans', 'Plus de 10 ans'
-  ];
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSelectChange = (name, value) => {
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const addSkill = () => {
-    if (newSkill.trim() && !formData.skills.includes(newSkill.trim())) {
-      setFormData(prev => ({
-        ...prev,
-        skills: [...prev.skills, newSkill.trim()]
-      }));
-      setNewSkill('');
-    }
-  };
-
-  const removeSkill = (skillToRemove) => {
-    setFormData(prev => ({
-      ...prev,
-      skills: prev.skills.filter(skill => skill !== skillToRemove)
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSaving(true);
-    
-    // Simulate API call (will be replaced with real backend)
-    setTimeout(() => {
-      setSaving(false);
-      // Show success message
-      alert('Profil mis à jour avec succès !');
-    }, 1000);
-  };
+  const errorList = Object.values(errors).flat().filter(Boolean);
+  const fieldError = (name) => (errors?.[name] ? errors[name][0] : null);
 
   return (
     <div className="min-h-screen bg-[var(--blanc)]">
       <Header user={user} onLogout={onLogout} />
-      
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Back Button */}
+
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <button
           onClick={goBack}
           className="flex items-center gap-2 text-[var(--bleu-nuit)] hover:text-[var(--bleu-roi)] mb-6 transition-colors"
@@ -116,244 +50,339 @@ const ProfilePage = ({ user = mockUser, onLogout }) => {
           <ArrowLeft className="w-5 h-5" />
           <span>Retour</span>
         </button>
-        
-        {/* Page Header */}
+
         <div className="mb-8">
           <h1 className="font-['Sora'] text-3xl font-bold text-[var(--bleu-nuit)] mb-2">
             Mon profil
           </h1>
           <p className="text-gray-600">
-            Completez votre profil pour que Lila puisse mieux vous aider
+            Complétez votre profil pour que Lila vous propose des offres parfaitement adaptées.
           </p>
         </div>
-        
-        {/* Info Banner */}
+
+        {status === 'profile-updated' && (
+          <div className="mb-6 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+            Profil mis à jour avec succès.
+          </div>
+        )}
+
+        {errorList.length > 0 && (
+          <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <p className="font-semibold mb-1">Nous n'avons pas pu enregistrer votre profil.</p>
+            <ul className="list-disc pl-5 space-y-1">
+              {errorList.slice(0, 6).map((message, index) => (
+                <li key={index}>{message}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="flex items-start gap-3 p-4 rounded-xl bg-[var(--bleu-roi)]/5 border border-[var(--bleu-roi)]/20 mb-8">
           <Info className="w-5 h-5 text-[var(--bleu-roi)] flex-shrink-0 mt-0.5" />
           <p className="text-sm text-[var(--bleu-nuit)]">
-            <strong>Conseil :</strong> Votre profil aide Lila à mieux vous proposer des offres. 
-            Plus il est complet, plus les recommandations seront pertinentes.
+            <strong>Conseil :</strong> indiquez clairement vos compétences et les postes souhaités pour recevoir des
+            recommandations plus pertinentes.
           </p>
         </div>
-        
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Personal Information */}
+
+        <form method="POST" action="/profile" className="space-y-8">
+          <input type="hidden" name="_token" value={csrfToken} />
+          <input type="hidden" name="_method" value="PATCH" />
+
           <section className="p-6 rounded-2xl bg-white border border-[var(--gris-clair)] shadow-sm">
             <h2 className="font-['Sora'] text-xl font-semibold text-[var(--bleu-nuit)] mb-6 flex items-center gap-2">
               <User className="w-5 h-5 text-[var(--bleu-roi)]" />
               Informations personnelles
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="name">Nom complet</Label>
+                <Label htmlFor="first_name">Prénom</Label>
                 <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Jean-Pierre Kamga"
+                  id="first_name"
+                  name="first_name"
+                  defaultValue={defaults.first_name || ''}
+                  placeholder="Jean-Pierre"
                   className="h-12"
+                  required
                 />
+                {fieldError('first_name') && <p className="text-sm text-red-600">{fieldError('first_name')}</p>}
               </div>
-              
+
+              <div className="space-y-2">
+                <Label htmlFor="last_name">Nom</Label>
+                <Input
+                  id="last_name"
+                  name="last_name"
+                  defaultValue={defaults.last_name || ''}
+                  placeholder="Kamga"
+                  className="h-12"
+                  required
+                />
+                {fieldError('last_name') && <p className="text-sm text-red-600">{fieldError('last_name')}</p>}
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <Input
                     id="email"
                     name="email"
                     type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
+                    defaultValue={defaults.email || ''}
                     placeholder="email@example.com"
                     className="h-12 pl-10"
-                    disabled
+                    required
                   />
                 </div>
+                {fieldError('email') && <p className="text-sm text-red-600">{fieldError('email')}</p>}
               </div>
-              
+
               <div className="space-y-2">
-                <Label htmlFor="phone">Téléphone</Label>
+                <Label htmlFor="phone">Téléphone WhatsApp</Label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <Input
                     id="phone"
                     name="phone"
                     type="tel"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="+237 6 XX XX XX XX"
+                    defaultValue={defaults.phone || ''}
+                    placeholder="2376XXXXXXXX"
                     className="h-12 pl-10"
+                    required
                   />
                 </div>
+                {fieldError('phone') && <p className="text-sm text-red-600">{fieldError('phone')}</p>}
               </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="city">Ville</Label>
-                <Select value={formData.city} onValueChange={(value) => handleSelectChange('city', value)}>
-                  <SelectTrigger className="h-12">
-                    <MapPin className="w-5 h-5 text-gray-400 mr-2" />
-                    <SelectValue placeholder="Sélectionnez votre ville" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {cities.map((city) => (
-                      <SelectItem key={city} value={city}>{city}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="location">Ville / Localisation</Label>
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input
+                    id="location"
+                    name="location"
+                    defaultValue={defaults.location || ''}
+                    placeholder="Douala, Yaoundé..."
+                    className="h-12 pl-10"
+                    required
+                  />
+                </div>
+                {fieldError('location') && <p className="text-sm text-red-600">{fieldError('location')}</p>}
               </div>
             </div>
           </section>
-          
-          {/* Professional Information */}
+
           <section className="p-6 rounded-2xl bg-white border border-[var(--gris-clair)] shadow-sm">
             <h2 className="font-['Sora'] text-xl font-semibold text-[var(--bleu-nuit)] mb-6 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-[var(--bleu-roi)]" />
               Expérience professionnelle
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="sector">Secteur d'activité</Label>
-                <Select value={formData.sector} onValueChange={(value) => handleSelectChange('sector', value)}>
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Sélectionnez un secteur" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {sectors.map((sector) => (
-                      <SelectItem key={sector} value={sector}>{sector}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Label htmlFor="current_title">Poste actuel</Label>
+                <Input
+                  id="current_title"
+                  name="current_title"
+                  defaultValue={defaults.current_title || ''}
+                  placeholder="Ex: Développeur web"
+                  className="h-12"
+                  required
+                />
+                {fieldError('current_title') && <p className="text-sm text-red-600">{fieldError('current_title')}</p>}
               </div>
-              
+
               <div className="space-y-2">
-                <Label htmlFor="experience">Niveau d'expérience</Label>
-                <Select value={formData.experience} onValueChange={(value) => handleSelectChange('experience', value)}>
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Sélectionnez votre expérience" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {experienceLevels.map((level) => (
-                      <SelectItem key={level} value={level}>{level}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Label htmlFor="years_experience">Années d'expérience</Label>
+                <Input
+                  id="years_experience"
+                  name="years_experience"
+                  type="number"
+                  min="0"
+                  defaultValue={defaults.years_experience ?? ''}
+                  placeholder="Ex: 3"
+                  className="h-12"
+                  required
+                />
+                {fieldError('years_experience') && (
+                  <p className="text-sm text-red-600">{fieldError('years_experience')}</p>
+                )}
               </div>
-              
+
               <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="education">Formation</Label>
+                <Label htmlFor="education_level">Niveau d'études</Label>
                 <div className="relative">
-                  <GraduationCap className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <Input
-                    id="education"
-                    name="education"
-                    value={formData.education}
-                    onChange={handleInputChange}
-                    placeholder="Ex: Licence en Informatique, Université de Douala"
+                    id="education_level"
+                    name="education_level"
+                    defaultValue={defaults.education_level || ''}
+                    placeholder="Ex: Licence, Master..."
                     className="h-12 pl-10"
                   />
                 </div>
+                {fieldError('education_level') && (
+                  <p className="text-sm text-red-600">{fieldError('education_level')}</p>
+                )}
               </div>
             </div>
           </section>
-          
-          {/* Skills */}
+
           <section className="p-6 rounded-2xl bg-white border border-[var(--gris-clair)] shadow-sm">
             <h2 className="font-['Sora'] text-xl font-semibold text-[var(--bleu-nuit)] mb-6 flex items-center gap-2">
               <FileText className="w-5 h-5 text-[var(--bleu-roi)]" />
-              Compétences
+              Compétences & objectifs
             </h2>
-            
-            <div className="space-y-4">
-              <div className="flex gap-3">
-                <Input
-                  value={newSkill}
-                  onChange={(e) => setNewSkill(e.target.value)}
-                  placeholder="Ajouter une compétence (ex: Excel, Communication)"
-                  className="h-12"
-                  onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSkill())}
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="skills">Compétences clés (séparées par des virgules)</Label>
+                <Textarea
+                  id="skills"
+                  name="skills"
+                  defaultValue={defaults.skills || ''}
+                  placeholder="Ex: JavaScript, React, Gestion de projet"
+                  className="min-h-[120px]"
+                  required
                 />
-                <Button 
-                  type="button"
-                  onClick={addSkill}
-                  className="h-12 px-6 bg-[var(--bleu-roi)] hover:bg-[var(--bleu-nuit)]"
-                >
-                  <Plus className="w-5 h-5" />
-                </Button>
+                {fieldError('skills') && <p className="text-sm text-red-600">{fieldError('skills')}</p>}
               </div>
-              
-              {formData.skills.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {formData.skills.map((skill, index) => (
-                    <span 
-                      key={index}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--bleu-roi)]/10 text-[var(--bleu-roi)]"
-                    >
-                      {skill}
-                      <button
-                        type="button"
-                        onClick={() => removeSkill(skill)}
-                        className="hover:text-red-500 transition-colors"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </span>
-                  ))}
+
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="languages">Langues</Label>
+                <Textarea
+                  id="languages"
+                  name="languages"
+                  defaultValue={defaults.languages || ''}
+                  placeholder="Ex: Français, Anglais"
+                  className="min-h-[90px]"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="desired_positions">Postes visés</Label>
+                <Textarea
+                  id="desired_positions"
+                  name="desired_positions"
+                  defaultValue={defaults.desired_positions || ''}
+                  placeholder="Ex: Développeur front-end, Chef de projet"
+                  className="min-h-[90px]"
+                  required
+                />
+                {fieldError('desired_positions') && (
+                  <p className="text-sm text-red-600">{fieldError('desired_positions')}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="desired_sectors">Secteurs visés</Label>
+                <Textarea
+                  id="desired_sectors"
+                  name="desired_sectors"
+                  defaultValue={defaults.desired_sectors || ''}
+                  placeholder="Ex: Tech, Banque, Santé"
+                  className="min-h-[90px]"
+                  required
+                />
+                {fieldError('desired_sectors') && (
+                  <p className="text-sm text-red-600">{fieldError('desired_sectors')}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="desired_locations">Villes recherchées</Label>
+                <Textarea
+                  id="desired_locations"
+                  name="desired_locations"
+                  defaultValue={defaults.desired_locations || ''}
+                  placeholder="Ex: Douala, Yaoundé"
+                  className="min-h-[90px]"
+                  required
+                />
+                {fieldError('desired_locations') && (
+                  <p className="text-sm text-red-600">{fieldError('desired_locations')}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="min_salary">Salaire minimum souhaité (FCFA)</Label>
+                <div className="relative">
+                  <Wallet className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input
+                    id="min_salary"
+                    name="min_salary"
+                    type="number"
+                    min="0"
+                    defaultValue={defaults.min_salary ?? ''}
+                    placeholder="Ex: 150000"
+                    className="h-12 pl-10"
+                    required
+                  />
                 </div>
-              )}
+                {fieldError('min_salary') && <p className="text-sm text-red-600">{fieldError('min_salary')}</p>}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="contract_types">Types de contrat</Label>
+                <Textarea
+                  id="contract_types"
+                  name="contract_types"
+                  defaultValue={defaults.contract_types || ''}
+                  placeholder="Ex: CDI, CDD, Freelance"
+                  className="min-h-[90px]"
+                />
+              </div>
             </div>
           </section>
-          
-          {/* Bio */}
+
           <section className="p-6 rounded-2xl bg-white border border-[var(--gris-clair)] shadow-sm">
-            <h2 className="font-['Sora'] text-xl font-semibold text-[var(--bleu-nuit)] mb-6">
-              À propos de vous
+            <h2 className="font-['Sora'] text-xl font-semibold text-[var(--bleu-nuit)] mb-6 flex items-center gap-2">
+              <LinkIcon className="w-5 h-5 text-[var(--bleu-roi)]" />
+              Liens professionnels
             </h2>
-            
-            <Textarea
-              name="bio"
-              value={formData.bio}
-              onChange={handleInputChange}
-              placeholder="Présentez-vous brièvement : vos motivations, ce que vous recherchez, vos points forts..."
-              className="min-h-[150px] resize-none"
-            />
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="linkedin_url">LinkedIn</Label>
+                <Input
+                  id="linkedin_url"
+                  name="linkedin_url"
+                  type="url"
+                  defaultValue={defaults.linkedin_url || ''}
+                  placeholder="https://linkedin.com/in/..."
+                  className="h-12"
+                />
+                {fieldError('linkedin_url') && <p className="text-sm text-red-600">{fieldError('linkedin_url')}</p>}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="portfolio_url">Portfolio</Label>
+                <Input
+                  id="portfolio_url"
+                  name="portfolio_url"
+                  type="url"
+                  defaultValue={defaults.portfolio_url || ''}
+                  placeholder="https://votre-portfolio.com"
+                  className="h-12"
+                />
+                {fieldError('portfolio_url') && <p className="text-sm text-red-600">{fieldError('portfolio_url')}</p>}
+              </div>
+            </div>
           </section>
-          
-          {/* Submit */}
-          <div className="flex justify-end gap-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => navigate(-1)}
-              className="px-8 h-12"
-            >
-              Annuler
-            </Button>
-            <Button
-              type="submit"
-              disabled={saving}
-              className="btn-gold px-8 h-12"
-            >
-              {saving ? (
-                <span className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-[var(--bleu-nuit)] border-t-transparent rounded-full animate-spin" />
-                  Enregistrement...
-                </span>
-              ) : (
-                <span className="flex items-center gap-2">
-                  <Save className="w-5 h-5" />
-                  Enregistrer le profil
-                </span>
-              )}
+
+          <div className="flex justify-end">
+            <Button type="submit" className="btn-gold px-8 h-12">
+              <span className="flex items-center gap-2">
+                <Save className="w-5 h-5" />
+                Enregistrer le profil
+              </span>
             </Button>
           </div>
         </form>
       </main>
-      
+
       <Footer />
     </div>
   );

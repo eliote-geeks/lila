@@ -4,6 +4,11 @@ import { Button } from '../components/ui/button';
 
 const LoginPage = () => {
   const csrfToken = window?.CamerHub?.csrfToken || '';
+  const errors = window?.CamerHub?.errors || {};
+  const old = window?.CamerHub?.old || {};
+  const status = window?.CamerHub?.status || null;
+  const errorList = Object.values(errors).flat().filter(Boolean);
+  const fieldError = (name) => (errors?.[name] ? errors[name][0] : null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--blanc)] via-[var(--gris-clair)] to-[#D4E0F7] flex items-center justify-center p-4">
@@ -26,6 +31,18 @@ const LoginPage = () => {
             </p>
           </div>
           
+          {status && (
+            <div className="mb-4 rounded-xl border border-[var(--gris-clair)] bg-white px-4 py-3 text-sm text-[var(--bleu-nuit)]">
+              {status}
+            </div>
+          )}
+
+          {errorList.length > 0 && (
+            <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              {errorList[0]}
+            </div>
+          )}
+
           {/* Login Form */}
           <form method="POST" action="/login" className="space-y-4">
             <input type="hidden" name="_token" value={csrfToken} />
@@ -37,9 +54,11 @@ const LoginPage = () => {
                 type="email"
                 required
                 autoComplete="email"
+                defaultValue={old.email || ''}
                 className="w-full h-12 px-4 rounded-xl border border-[var(--gris-clair)] bg-white text-[var(--bleu-nuit)] focus:outline-none focus:ring-2 focus:ring-[var(--bleu-roi)]"
                 placeholder="email@example.com"
               />
+              {fieldError('email') && <p className="text-sm text-red-600">{fieldError('email')}</p>}
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-[var(--bleu-nuit)]" htmlFor="password">Mot de passe</label>
@@ -52,6 +71,7 @@ const LoginPage = () => {
                 className="w-full h-12 px-4 rounded-xl border border-[var(--gris-clair)] bg-white text-[var(--bleu-nuit)] focus:outline-none focus:ring-2 focus:ring-[var(--bleu-roi)]"
                 placeholder="••••••••"
               />
+              {fieldError('password') && <p className="text-sm text-red-600">{fieldError('password')}</p>}
             </div>
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center gap-2 text-gray-600">

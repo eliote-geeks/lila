@@ -12,6 +12,9 @@
 <script>
     window.CamerHub = {
         csrfToken: '{{ csrf_token() }}',
+        errors: @json($errors->toArray()),
+        old: @json(['email' => old('email')]),
+        status: @json(session('status')),
     };
 </script>
 </body>
