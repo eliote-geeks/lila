@@ -49,7 +49,8 @@ class ChatController extends Controller
         ]);
 
         $user = $request->user();
-        $sessionId = $data['session_id'] ?: Str::uuid()->toString();
+        $sessionId = $data['session_id'] ?? null;
+        $sessionId = $sessionId ?: Str::uuid()->toString();
 
         ChatMessage::create([
             'user_id' => $user->id,
