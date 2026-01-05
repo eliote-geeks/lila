@@ -77,12 +77,12 @@ const ChatPage = ({ user = mockUser, onLogout }) => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-[var(--blanc)]">
+    <div className="min-h-screen flex flex-col bg-[var(--blanc)]">
       <Header user={user} onLogout={onLogout} />
       
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex min-h-0 overflow-hidden">
         {/* Sidebar - Desktop */}
-        <aside className="hidden lg:flex w-80 flex-col border-r border-[var(--gris-clair)] bg-white">
+        <aside className="hidden lg:flex w-80 flex-col border-r border-[var(--gris-clair)] bg-white min-h-0 overflow-y-auto">
           {/* Profile Card */}
           <div className="p-6 border-b border-[var(--gris-clair)]">
             <div className="flex items-center gap-4 mb-4">
@@ -154,7 +154,7 @@ const ChatPage = ({ user = mockUser, onLogout }) => {
         </aside>
         
         {/* Chat Area */}
-        <main className="flex-1 flex flex-col">
+        <main className="flex-1 flex flex-col min-h-0">
           {/* Chat Header */}
           <div className="flex items-center justify-between p-4 border-b border-[var(--gris-clair)] bg-white">
             <div className="flex items-center gap-3">
@@ -175,7 +175,7 @@ const ChatPage = ({ user = mockUser, onLogout }) => {
           </div>
           
           {/* Messages */}
-          <ScrollArea className="flex-1 p-4">
+          <ScrollArea className="flex-1 min-h-0 p-4">
             <div className="max-w-3xl mx-auto space-y-4">
               {messages.map((message) => (
                 <div 
